@@ -9,8 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prueba_tecnica_kotlin.R
 import com.example.prueba_tecnica_kotlin.utils.Utils
 import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import com.google.gson.JsonObject
+import java.util.*
 
 class UsersAdapter (var context: Context, var users: JsonArray) :  RecyclerView.Adapter<UsersAdapter.UsersViewHolder>(){
+    var auxData = mutableListOf<JsonElement>();
+
+    init {
+        if(auxData.isEmpty()){
+            auxData = users.toMutableList()
+        }
+    }
 
     class UsersViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val name: TextView = itemView.findViewById(R.id.name)
@@ -28,7 +38,7 @@ class UsersAdapter (var context: Context, var users: JsonArray) :  RecyclerView.
     }
 
     override fun onBindViewHolder(holder: UsersAdapter.UsersViewHolder, position: Int) {
-        var current = users[position]
+        var current = auxData[position]
         var user = current.asJsonObject
         var name = "${user.get("name")}".replace("\"","")
         holder.name.text = name
@@ -41,7 +51,23 @@ class UsersAdapter (var context: Context, var users: JsonArray) :  RecyclerView.
     }
 
     override fun getItemCount(): Int {
-        return users.size()
+        return auxData.size
+    }
+
+    fun filter(str: String) {
+        if (str.length != 0) {
+            auxData.clear()
+            for (userlist in users) {
+                if (userlist.asJsonObject.get("name").toString()
+                        .lowercase().contains(str.lowercase())) {
+                    auxData.add(userlist)
+                }
+            }
+        } else {
+            auxData.clear()
+            auxData.addAll(users)
+        }
+        notifyDataSetChanged()
     }
 
 }
