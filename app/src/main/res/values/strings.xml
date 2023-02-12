@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Prueba Técnica Kotlin</string>
+    <string name="user_list">Listado de usuarios</string>
+    <string name="id">1</string>
+    <string name="name">Jhon Connor</string>
+    <string name="user_name">JConnor</string>
+    <string name="email">jhc@gmail.com</string>
+    <string name="phone">111-111-1111</string>
+    <string name="website">ambrose.net</string>
+    <string name="failure">Sin Conexión</string>
+    <string name="title_id">ID</string>
+    <string name="title_name">Name</string>
+    <string name="title_user">User Name</string>
+    <string name="title_email">Email</string>
+    <string name="title_phone">Phone</string>
+    <string name="title_website">Website</string>
+</resources>
