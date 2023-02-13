@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initComponents() {
         supportActionBar?.show()
+        supportActionBar?.setTitle(R.string.user_list)
         recycler = binding.recyclerUsers
         recycler.layoutManager = LinearLayoutManager(this)
         if (isOnline(this)){
